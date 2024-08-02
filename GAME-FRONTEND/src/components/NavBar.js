@@ -29,7 +29,7 @@ const NavBar = observer(() => {
                     fetchDevices(null, null,1, device.limit).then(data => {
                     device.setDevices(data.rows)
                     device.setTotalCount(data.count)
-                })}} style={{color:'white'}} to={SHOP_ROUTE}>GAMES</NavLink>
+                })}} style={{color:'white'}} to={SHOP_ROUTE}>GAME RECORDS</NavLink>
                 {user.isAuth ?
                     <Nav className="ml-auto" style={{color: 'white'}}>
                         <div style={{padding: '10px'}}>{user.user.email}</div>
