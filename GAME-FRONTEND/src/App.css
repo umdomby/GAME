@@ -1,0 +1,95 @@
+/*@media (min-width:1200px){.container{width:100%}}*/
+@media (min-width: 1200px) {
+    .container, .container-lg, .container-md, .container-sm, .container-xl {
+        max-width: 96%;
+    }
+}
+@media (min-width: 576px) {
+    .modal-dialog {
+        max-width: 90%;
+        margin: 1.75rem auto;
+    }
+}
+.container {
+    width: 100%;
+    /*padding-left: 0.2%;*/
+    /*padding-right: 0.4%;*/
+}
+.content {
+    flex: 1;
+    display: flex;
+    overflow: auto;
+}
+
+.nav-link {
+    display: block;
+    padding: 0rem 0rem;
+}
+.box {
+    display: flex;
+    min-height: min-content; /* needs vendor prefixes */
+}
+.myButton{
+    background-color: #383;
+}
+
+.ml_2{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /*margin-left: 2%;*/
+}
+
+.video {
+    height: 0;
+    position: relative;
+    padding-bottom: 56.25%;
+}
+.video_iframe {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 95%;
+    height: 95%;
+}
+
+.myTooltip:after {
+    position: absolute;
+    left: 0;
+    bottom: 130%;
+    min-width:180px;
+    content: attr(data-info);
+    visibility: hidden;
+    min-width:180px;
+    font-size: 16px;
+    background-color: rgba(61,61,61,0.95);
+    color: #fff;
+    padding: 13px;
+    border-radius: 6px;
+}
+
+.list-group-item {
+    padding: .1rem .2rem;
+}
+
+.head{
+    color: #878787;
+    font-weight: 600;
+}
+/*--------------bootstrap------------*/
+.font-s{
+    font-size:14px;
+    color: #494949;
+}
+.list-group-item.active {
+    z-index: 2;
+    color: #b64646;
+    background-color: #f6ec92;
+    border-color: #b1b1b1;
+}
+body {
+    color: #0060bf;
+    font-weight: 600;
+}
+/*----------end-bootstrap------------*/
+
