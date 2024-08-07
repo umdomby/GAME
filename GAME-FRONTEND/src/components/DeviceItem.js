@@ -15,9 +15,9 @@ const DeviceItem = ({devicer}) => {
     const [devicesUsername, setDevicesUsername] = useState([])
 
     const customStyles = {
-        // content : {
-        //     ...
-        // },
+        content : {
+            // style={{ marginLeft: 'auto', marginRight: 'auto' }}
+        },
         overlay: {
             zIndex: 999999999,
             backgroundColor: 'transparent'
@@ -46,7 +46,7 @@ const DeviceItem = ({devicer}) => {
                                 onRequestClose={()=>setShowModal(false)}
                             >
                                 <div>
-                                    <Image style={{width:"100%", height:"100%", cursor: 'pointer'}} src={process.env.REACT_APP_API_URL + devicer.img}  onClick={() => setShowModal(false)}/>
+                                    <Image style={{ margin: '0 auto', display: 'block', width:"55%", cursor: 'pointer' }} src={process.env.REACT_APP_API_URL + devicer.img}  onClick={() => setShowModal(false)}/>
                                 </div>
                                 <div>
                                     <Col style={{}}>Create {moment(devicer.createdAt).format('YYYY-MM-DD HH:mm:ss')}</Col>
