@@ -1,0 +1,5 @@
+{
+  "scripts": {
+    "start": "cd GAME-BACKEND && yarn start & cd GAME-FRONTEND && yarn start"
+  }
+}
