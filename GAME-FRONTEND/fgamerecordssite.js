@@ -5,19 +5,20 @@ const express = require('express');
 
 const path = require('path')
 
-const privateKey = fs.readFileSync(path.resolve('/etc/letsencrypt/live/gamerecords.site/privkey.pem'));
-const certificate = fs.readFileSync(path.resolve('/etc/letsencrypt/live/gamerecords.site/cert.pem'));
-const ca = fs.readFileSync(path.resolve('/etc/letsencrypt/live/gamerecords.site/chain.pem'));
+// const privateKey = fs.readFileSync(path.resolve('/etc/letsencrypt/live/gamerecords.site/privkey.pem'));
+// const certificate = fs.readFileSync(path.resolve('/etc/letsencrypt/live/gamerecords.site/cert.pem'));
+// const ca = fs.readFileSync(path.resolve('/etc/letsencrypt/live/gamerecords.site/chain.pem'));
+//
+// const credentials = {
+//     key: privateKey,
+//     cert: certificate,
+//     ca: ca
+// };
 
 const app = express()
 app.use(express.static(__dirname))
 app.use(express.static(path.resolve(__dirname, 'build')))
 
-const credentials = {
-    key: privateKey,
-    cert: certificate,
-    ca: ca
-};
 
 const httpServer = http.createServer(app);
 app.get('*', (req, res)=>{

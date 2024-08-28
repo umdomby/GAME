@@ -8,11 +8,11 @@ const router = require('./routes/index')
 const errorHandler = require('./middleware/ErrorHandlingMiddleware')
 const path = require('path')
 
-const PORT = 5001
+const PORT = process.env.PORT || 5000
 
 const fs = require('fs');
+//const http = require('http');
 const https = require('https');
-//const express = require('express');
 
 const app = express()
 app.use(cors())
@@ -24,7 +24,6 @@ app.use('/api', router)
 // Обработка ошибок, последний Middleware
 app.use(errorHandler)
 
-
 const privateKey = fs.readFileSync(path.resolve('/etc/letsencrypt/live/gamerecords.site/privkey.pem'));
 const certificate = fs.readFileSync(path.resolve('/etc/letsencrypt/live/gamerecords.site/cert.pem'));
 const ca = fs.readFileSync(path.resolve('/etc/letsencrypt/live/gamerecords.site/chain.pem'));
@@ -34,8 +33,9 @@ const credentials = {
     cert: certificate,
     ca: ca
 };
-
 const httpsServer = https.createServer(credentials, app);
+
+//const httpServer = http.createServer(app);
 
 const start = async () => {
     try {
@@ -44,12 +44,11 @@ const start = async () => {
         //app.listen(PORT, () => console.log(`Server started on port ${PORT}`))
 
         httpsServer.listen(PORT, () => {
-            console.log('HTTPS Server running on port 5001');
+            console.log(`Server started on port ${PORT}`);
         });
     } catch (e) {
         console.log(e)
     }
 }
-
 
 start()
