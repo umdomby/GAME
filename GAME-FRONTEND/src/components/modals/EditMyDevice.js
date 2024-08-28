@@ -5,7 +5,7 @@ import {Context} from "../../index";
 import {
     fetchMyDevices,
     updateDeviceFile,
-    updateDeviceTimestate
+    updateDeviceTimestate, updateLinkVideo
 } from "../../http/deviceAPI";
 import {observer} from "mobx-react-lite";
 import ListGroup from "react-bootstrap/ListGroup";
@@ -14,6 +14,7 @@ import ListGroup from "react-bootstrap/ListGroup";
 const EditMyDevice = observer(({show, onHide}) => {
     const {device, user} = useContext(Context)
     const [rend, setRend] = useState(false)
+    const [linkVideo, setLinkVideo] = useState('')
 
     useEffect(() => {
         fetchMyDevices(user.user.email).then(data => {
@@ -29,6 +30,13 @@ const EditMyDevice = observer(({show, onHide}) => {
         formData.append('imgdel', imgDel)
         formData.append('file', file)
         updateDeviceFile(formData).then( data => setRend(true))
+    }
+
+    const fLinkVideo = (id) => {
+        const formData = new FormData()
+        formData.append('id', id)
+        formData.append('linkvideo', linkVideo)
+        updateLinkVideo(formData).then(data => setRend(true))
     }
 
     const FormDataTimestate = (id, timestate) => {
@@ -59,7 +67,12 @@ const EditMyDevice = observer(({show, onHide}) => {
                         <Row>
                             <Col>{device.name}</Col>
                             <Col>{device.description}</Col>
-                            <Col><input type="file" onChange={ e => FormDataFile(device.id, device.img, e.target.files[0])} /></Col>
+                            <Col><input type="text" placeholder="Link video"
+                                        defaultValue={device.linkvideo}
+                                        onChange={ e => setLinkVideo(e.target.value)} />
+                                <Button style={{marginLeft:'5px'}} onClick={() => fLinkVideo(device.id)}>Edit</Button>
+                            </Col>
+                            <Col><input type="file"  onChange={ e => FormDataFile(device.id, device.img, e.target.files[0])} /></Col>
                             <Col>
                                 <input
                                     type="time"

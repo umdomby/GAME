@@ -75,6 +75,22 @@ class DeviceController {
         }
     }
 
+    async updateLinkVideo(req, res, next) {
+        try {
+            let {id, linkvideo} = req.body
+            Device.findOne({where: {id: id}}).then(record => {
+                if (!record) {throw new Error('No record found')} console.log(`retrieved record ${JSON.stringify(record,null,2)}`)
+                let values = {linkvideo : linkvideo}
+                record.update(values).then(updatedRecord => {console.log(`updated record ${JSON.stringify(updatedRecord,null,2)}`)})})
+                .catch((error) => {
+                    throw new Error(error)
+                })
+            return res.json('devices Update linkvideo')
+        } catch (e) {
+            next(ApiError.badRequest(e.message))
+        }
+    }
+
     async  getDevicesUsername(req, res) {
         const {username} = req.query
         //console.log('username ' + username)

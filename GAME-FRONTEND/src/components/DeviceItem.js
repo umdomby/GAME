@@ -69,7 +69,11 @@ const DeviceItem = ({devicer}) => {
                         >{devicer.username} </NavLink>
                     </Col>
                     <Col style={{}}> {devicer.timestate.substring(3)} </Col>
-                    <Col style={{cursor: 'pointer'}}>  <Image width={50} height={20} src={process.env.REACT_APP_API_URL + 'image/small/' + devicer.img} onClick={() => setShowModal(true)}/></Col>
+                    <Col
+                        style={{cursor: 'pointer'}}>  <Image width={50} height={20} src={process.env.REACT_APP_API_URL + 'image/small/' + devicer.img} onClick={() => setShowModal(true)}/>
+                        {devicer.linkvideo == '' ? '' : <a style={{cursor: 'pointer', marginLeft:'5px'}} href={devicer.linkvideo} target="_blank">video</a>}
+                    </Col>
+
                 </Row>
 
                 <DevicesUsername show={deviceVisible} onHide={() => setDeviceVisible(false)}/>
