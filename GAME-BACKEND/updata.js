@@ -9,7 +9,7 @@ const errorHandler = require('./middleware/ErrorHandlingMiddleware')
 const path = require('path')
 const {Device} = require("./models/models");
 
-const PORT = process.env.PORT || 5000
+const PORT = 5001
 
 const app = express()
 app.use(cors())
@@ -29,7 +29,7 @@ const updata = async () => {
             { name: 'NFS Most Wanted 2005' },
             {
                 where: {
-                    name: 'NFS Most Wanted 2006',
+                    name: 'NFS Most Wanted',
                 },
             },
         );
