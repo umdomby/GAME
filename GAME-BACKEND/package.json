@@ -5,8 +5,9 @@
   "main": "dev.js",
   "scripts": {
     "pm2": "pm2 start bgamerecordssite.js",
-    "start": "nodemon bgamerecordssite.js",
-    "dev": "nodemon dev.js"
+    "prod": "nodemon bgamerecordssite.js",
+    "start": "nodemon dev.js",
+    "updata": "node updata.js"
   },
   "keywords": [],
   "author": "",
