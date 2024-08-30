@@ -61,7 +61,7 @@ class DeviceController {
     }
     async updateTimestate(req, res, next) {
         try {
-            let {id, timestate} = req.body
+            let {id, description, timestate} = req.body
             Device.findOne({where: {id: id}}).then(record => {
                 if (!record) {throw new Error('No record found')} console.log(`retrieved record ${JSON.stringify(record,null,2)}`)
                 let values = {timestate : timestate}
@@ -69,7 +69,21 @@ class DeviceController {
             .catch((error) => {
                     throw new Error(error)
             })
-            return res.json('devices Update Timestate')
+            return res.json({timestate, description})
+        } catch (e) {
+            next(ApiError.badRequest(e.message))
+        }
+    }
+
+    async delete(req, res, next) {
+        try {
+            let {id} = req.body
+            await Device.destroy({
+                where: {
+                    id: id,
+                },
+            });
+            return res.json({})
         } catch (e) {
             next(ApiError.badRequest(e.message))
         }

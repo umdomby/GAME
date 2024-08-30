@@ -56,6 +56,11 @@ export const updateDeviceTimestate = async (device) => {
     return data
 }
 
+export const deviceDelete = async (device) => {
+    const {data} = await $authHost.post('api/device/delete', device)
+    return data
+}
+
 export const updateLinkVideo = async (device) => {
     const {data} = await $authHost.post('api/device/update/linkvideo', device)
     return data

@@ -7,6 +7,7 @@ export default class DeviceStore {
         this._typesBrands = []
         this._devices = []
         this._myDevices = []
+        this._myDevices2 = []
         this._selectedDevicesUsername = []
         this._selectedType = {}
         this._selectedTypeBrand = []
@@ -30,6 +31,9 @@ export default class DeviceStore {
     }
     setMyDevices(myDevices) {
         this._myDevices = myDevices
+    }
+    setMyDevices2(myDevices2) {
+        this._myDevices2 = myDevices2
     }
     setSelectedDevicesUsername(selectedDevicesUsername) {
         this._selectedDevicesUsername = selectedDevicesUsername
@@ -62,6 +66,9 @@ export default class DeviceStore {
     }
     get myDevices() {
         return this._myDevices
+    }
+    get myDevices2() {
+        return this._myDevices2
     }
     get selectedDevicesUsername() {
         return this._selectedDevicesUsername
