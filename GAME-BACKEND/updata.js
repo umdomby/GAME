@@ -46,29 +46,46 @@ const updata = async () => {
             where: {name: 'NFS Most Wanted 2005'},
             attributes: ['description']
         })
+        // for(let i = 0; i < TRACKresult.length  ; i++) {
+        //     console.log(TRACKresult[i].description)
+        // }
+        //console.log(TRACKresult)
 
         const NFSMWresult = await Device.findAll({
             where: {name: 'NFS Most Wanted 2005'},
             // attributes: ['timestate']
         })
 
-        const arrayNFSMWsortTRACK = []
-        for(let i =0; i < TRACKresult.length  ; i++){
-
+        let arrayNFSMWsortTRACK = []
+        console.log("##################################")
+        for(let i = 0; i < TRACKresult.length  ; i++){
+            arrayNFSMWsortTRACK = []
             for(let b = 0; b < NFSMWresult.length ; b++) {
 
-                if(NFSMWresult[b].description === TRACKresult[i].description) {
+                if(TRACKresult[i].description === NFSMWresult[b].description) {
 
                     //console.log(TRACKresult[i].description + ' ' + NFSMWresult[b].username + ' ' + NFSMWresult[b].timestate)
-                    arrayNFSMWsortTRACK.push(NFSMWresult[i])
+                    arrayNFSMWsortTRACK.push({username: NFSMWresult[b].username, timestate: NFSMWresult[b].timestate, description: NFSMWresult[b].description})
+
+                    //console.log("================================================")
+                    // for(let c = 0; c < arrayNFSMWsortTRACK.length  ; c++) {
+                    //     console.log(arrayNFSMWsortTRACK[c])
+                    // }
+                    //console.log(NFSMWresult[b].description)
+
                 }
             }
-        }
-        console.log()
+            console.log("================================================")
+            for(let i = 0; i < arrayNFSMWsortTRACK.length  ; i++) {
 
-        for(let i =0; i < arrayNFSMWsortTRACK.length  ; i++) {
-            console.log(i+1 + ' ' + arrayNFSMWsortTRACK[i].description + ' ' + arrayNFSMWsortTRACK[i].username + ' ' + arrayNFSMWsortTRACK[i].timestate )
+                console.log(arrayNFSMWsortTRACK[i])
+            }
         }
+
+        // console.log("================================================")
+        // for(let i = 0; i < arrayNFSMWsortTRACK.length  ; i++) {
+        //     console.log(arrayNFSMWsortTRACK[i] )
+        // }
 
 
         // for(let i =0; i < result2.length ; i++){
