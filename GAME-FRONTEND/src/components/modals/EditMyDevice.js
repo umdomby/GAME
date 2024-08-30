@@ -91,6 +91,7 @@ const EditMyDevice = observer(({show, onHide}) => {
                                     <input
                                         type="time"
                                         step="0.001"
+                                        pattern="[0-2]{1}[0-9]{1}:[0-5]{1}[0-9]{1}"
                                         defaultValue={deviceMap.timestate}
                                         onChange={e => {
                                              setIdRend({id:deviceMap.id})
