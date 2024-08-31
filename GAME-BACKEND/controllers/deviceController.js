@@ -77,7 +77,14 @@ class DeviceController {
 
     async delete(req, res, next) {
         try {
-            let {id} = req.body
+            let {id, imgdel} = req.body
+
+            if (fs.existsSync(path.join(__dirname, "../static/image/full/" + imgdel))) {
+                fs.unlinkSync(path.join(__dirname, "../static/image/full/" + imgdel));
+            }
+            if (fs.existsSync(path.join(__dirname, "../static/image/small/" + imgdel))) {
+                fs.unlinkSync(path.join(__dirname, "../static/image/small/" + imgdel));
+            }
             await Device.destroy({
                 where: {
                     id: id,

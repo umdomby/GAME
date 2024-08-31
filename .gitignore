@@ -3,3 +3,4 @@
 /.idea/
 /SHOP-BACKEND/node_modules/
 /SHOP-BACKEND/.env/
+.idea

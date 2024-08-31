@@ -6,23 +6,11 @@ import DevicesUsername from "./modals/DevicesUsername";
 import {fetchDevicesUsername} from "../http/deviceAPI";
 import {Context} from "../index";
 const moment = require('moment');
-
-
 const DeviceItem = ({devicer}) => {
     const {device} = useContext(Context)
     const [showModal, setShowModal] = useState(false)
     const [deviceVisible, setDeviceVisible] = useState(false)
     const [devicesUsername, setDevicesUsername] = useState([])
-
-    const customStyles = {
-        content : {
-            // style={{ marginLeft: 'auto', marginRight: 'auto' }}
-        },
-        overlay: {
-            zIndex: 999999999,
-            backgroundColor: 'transparent'
-        }
-    };
 
     const devicesUsernameFunc = (username) => {
         fetchDevicesUsername(username).then(data => {
@@ -33,14 +21,11 @@ const DeviceItem = ({devicer}) => {
     }
 
     return (
-
-
             <Card style={{width: '100%'}} border={"light"}>
                 <Row style={{width:'100%'}}>
                     <Col md={2} className={"mt-3"}>
                         <div className='jook-container'>
                             <Modal
-                                style={customStyles}
                                 ariaHideApp={false}
                                 isOpen={showModal}
                                 onRequestClose={()=>setShowModal(false)}

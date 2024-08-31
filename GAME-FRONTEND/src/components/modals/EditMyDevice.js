@@ -50,11 +50,12 @@ const EditMyDevice = observer(({show, onHide}) => {
             setRend(true)
             alert(data.description + ' изменен на: ' + data.timestate)})
     }
-    const FormDataDelete = (id, description, timestate) => {
+    const FormDataDelete = (id, description, timestate, img) => {
         const conf = window.confirm("Подтверждаете удаление " + description +" "+ timestate +" ?");
         if (conf) {
             const formData = new FormData()
             formData.append('id', id)
+            formData.append('imgdel', img)
             deviceDelete(formData).then(data => setRend(true))
         }
     }
@@ -98,7 +99,7 @@ const EditMyDevice = observer(({show, onHide}) => {
                                         }}
                                     />
                                 <input disabled={idRend.id === deviceMap.id  ? false : true} type="submit" value="Add" onClick={() => FormDataTimestate(deviceMap.id, deviceMap.description, timestateRef.current)}/>
-                                <Button style={{marginLeft: '5px'}} onClick={() => FormDataDelete(deviceMap.id, deviceMap.description, deviceMap.timestate)}>Del</Button>
+                                <Button style={{marginLeft: '5px'}} onClick={() => FormDataDelete(deviceMap.id, deviceMap.description, deviceMap.timestate, deviceMap.img)}>Del</Button>
                             </Col>
                         </Row>
                     </ListGroup.Item>

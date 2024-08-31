@@ -56,16 +56,18 @@ const updata = async () => {
             // attributes: ['timestate']
         })
 
-        let arrayNFSMWsortTRACK = []
+        let arrayNFSMWnoSortTRACK = []
+        let arrayNFSMWSortTRACK = []
+        let arrayNFSMWSortUSER = []
         console.log("##################################")
         for(let i = 0; i < TRACKresult.length  ; i++){
-            arrayNFSMWsortTRACK = []
+            arrayNFSMWnoSortTRACK = []
             for(let b = 0; b < NFSMWresult.length ; b++) {
 
                 if(TRACKresult[i].description === NFSMWresult[b].description) {
 
                     //console.log(TRACKresult[i].description + ' ' + NFSMWresult[b].username + ' ' + NFSMWresult[b].timestate)
-                    arrayNFSMWsortTRACK.push({username: NFSMWresult[b].username, timestate: NFSMWresult[b].timestate, description: NFSMWresult[b].description})
+                    arrayNFSMWnoSortTRACK.push({username: NFSMWresult[b].username, timestate: NFSMWresult[b].timestate, description: NFSMWresult[b].description})
 
                     //console.log("================================================")
                     // for(let c = 0; c < arrayNFSMWsortTRACK.length  ; c++) {
@@ -76,9 +78,9 @@ const updata = async () => {
                 }
             }
             console.log("================================================")
-            for(let i = 0; i < arrayNFSMWsortTRACK.length  ; i++) {
+            for(let i = 0; i < arrayNFSMWnoSortTRACK.length  ; i++) {
 
-                console.log(arrayNFSMWsortTRACK[i])
+                console.log(arrayNFSMWnoSortTRACK[i])
             }
         }
 
