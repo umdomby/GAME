@@ -4,7 +4,6 @@ const {Device, DeviceInfo, Brand, User} = require('../models/models')
 const ApiError = require('../error/ApiError');
 const fs = require('fs');
 const sharp = require("sharp");
-const sequelize = require("../db");
 
 async function medal() {
     try {
