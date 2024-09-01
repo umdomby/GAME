@@ -101,19 +101,10 @@ async function medal() {
                 })
             })
         }
-
-        // console.log(countGold)
-        // console.log(countSilver)
-        // console.log(countBronze)
-        // console.log(countPlatinum)
-
-        console.log(medalUsersFull)
-
     } catch (e) {
         console.log(e)
     }
 }
-
 class DeviceController {
     async create(req, res, next) {
         try {
@@ -186,7 +177,6 @@ class DeviceController {
             next(ApiError.badRequest(e.message))
         }
     }
-
     async delete(req, res, next) {
         try {
             let {id, imgdel} = req.body
@@ -207,7 +197,6 @@ class DeviceController {
             next(ApiError.badRequest(e.message))
         }
     }
-
     async updateLinkVideo(req, res, next) {
         try {
             let {id, linkvideo} = req.body
@@ -223,7 +212,6 @@ class DeviceController {
             next(ApiError.badRequest(e.message))
         }
     }
-
     async  getDevicesUsername(req, res) {
         const {username} = req.query
         //console.log('username ' + username)
@@ -233,7 +221,6 @@ class DeviceController {
             }})
         return res.json(devicesUsername)
     }
-
     async getAll(req, res) {
         let {typeName, brandName, limit, page} = req.query
         let offset = page * limit - limit
