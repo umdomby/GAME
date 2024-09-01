@@ -82,10 +82,10 @@ class UserController {
     async check(req, res, next) {
         const token = generateJwt(req.user.id, req.user.email, req.user.role)
 
-        const userAll = await User.findOne({
-            where: {
-                id : req.user.id
-            }})
+        // const userAll = await User.findOne({
+        //     where: {
+        //         id : req.user.id
+        //     }})
 
         // const user = {
         //     point : userAll.point
@@ -101,6 +101,16 @@ class UserController {
         // })
         //return res.json({token, user})
         return res.json({token})
+    }
+
+
+    async getUsers(req, res) {
+
+
+        const userAll = await User.findAll({
+            attributes: ['email', 'point', 'medal']
+            })
+        return res.json(userAll)
     }
 }
 

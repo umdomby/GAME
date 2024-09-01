@@ -79,10 +79,25 @@ const updata = async () => {
         for(let i = 0; i < USERS.length  ; i++) {
             countPlatinum.push({username: USERS[i].email, medal: medalPlatinum.filter(item => item.username === USERS[i].email).length})}
 
-        console.log(countGold)
-        console.log(countSilver)
-        console.log(countBronze)
-        console.log(countPlatinum)
+        let medalUsersFull = []
+
+        for(let i = 0; i < USERS.length  ; i++){
+            medalUsersFull.push( {username: USERS[i].email, gold: countGold[i].medal, silver: countSilver[i].medal, bronze: countBronze[i].medal, platinum: countPlatinum[i].medal })
+        }
+
+        for(let i = 0; i < medalUsersFull.length  ; i++){
+            await User.findOne({where: {email: medalUsersFull[i].username }}).then(record => {
+                record.update({medal: JSON.stringify(medalUsersFull[i])}).then(updatedRecord => {
+                    console.log(`updated record ${JSON.stringify(updatedRecord,null,2)}`)
+                })})
+        }
+
+        // console.log(countGold)
+        // console.log(countSilver)
+        // console.log(countBronze)
+        // console.log(countPlatinum)
+
+        console.log(medalUsersFull)
 
     } catch (e) {
         console.log(e)
