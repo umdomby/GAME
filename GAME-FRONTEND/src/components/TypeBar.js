@@ -82,7 +82,7 @@ const TypeBar = observer(() => {
 
         <div style={{marginTop:'20px'}}></div>
             <Row>
-                <Col style={{}}></Col>
+                <Col style={{}}>NFSMW</Col>
                 <Col style={{}}>Gold</Col>
                 <Col style={{}}>Silver</Col>
                 <Col style={{}}>Bronze</Col>
