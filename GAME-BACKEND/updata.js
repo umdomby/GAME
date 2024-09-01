@@ -36,7 +36,6 @@ const updata = async () => {
         let medalBronze = []
         let medalPlatinum = []
 
-        console.log("##################################")
         for(let i = 0; i < TRACKresult.length  ; i++){
             arrayNFSMWnoSortTRACK = []
             for(let b = 0; b < NFSMWresult.length ; b++) {
@@ -47,6 +46,20 @@ const updata = async () => {
             sortedThreeArrayNFSMWnoSortTRACK = arrayNFSMWnoSortTRACK.sort((a, b) => Number(a.timestate.replace(/[\:.]/g, '')) - Number(b.timestate.replace(/[\:.]/g, '')));
             sortedThreeArrayNFSMWnoSortTRACK.splice(3)
 
+            for(let i = 0; i < USERS.length  ; i++){
+                //console.log(USERS[i].email)
+                let equals = 0
+                for(let k = 0; k < sortedThreeArrayNFSMWnoSortTRACK.length  ; k++){
+                    if (sortedThreeArrayNFSMWnoSortTRACK[k].username === USERS[i].email) {
+                        equals = equals + 1
+                        //console.log(equals + ' ' + sortedThreeArrayNFSMWnoSortTRACK[k].description)
+                        if(equals === 3) {
+                            //console.log("Platinum " + USERS[i].email)
+                            medalPlatinum.push({username: USERS[i].email})
+                        }
+                    }
+                }
+            }
             if(sortedThreeArrayNFSMWnoSortTRACK[0] !== undefined)   medalGold.push(sortedThreeArrayNFSMWnoSortTRACK[0])
             if(sortedThreeArrayNFSMWnoSortTRACK[1] !== undefined)   medalSilver.push(sortedThreeArrayNFSMWnoSortTRACK[1])
             if(sortedThreeArrayNFSMWnoSortTRACK[2] !== undefined)   medalBronze.push(sortedThreeArrayNFSMWnoSortTRACK[2])
@@ -55,58 +68,21 @@ const updata = async () => {
         let countGold = []
         let countSilver = []
         let countBronze = []
+        let countPlatinum = []
 
-        for(let i = 0; i < USERS.length  ; i++) countGold.push({username: USERS[i].email, medal: medalGold.filter(item => item.username === USERS[i].email).length})
-        for(let i = 0; i < USERS.length  ; i++) countSilver.push({username: USERS[i].email, medal: medalSilver.filter(item => item.username === USERS[i].email).length})
-        for(let i = 0; i < USERS.length  ; i++) countBronze.push({username: USERS[i].email, medal: medalBronze.filter(item => item.username === USERS[i].email).length})
+        for(let i = 0; i < USERS.length  ; i++) {
+            countGold.push({username: USERS[i].email, medal: medalGold.filter(item => item.username === USERS[i].email).length})}
+        for(let i = 0; i < USERS.length  ; i++) {
+            countSilver.push({username: USERS[i].email, medal: medalSilver.filter(item => item.username === USERS[i].email).length})}
+        for(let i = 0; i < USERS.length  ; i++) {
+            countBronze.push({username: USERS[i].email, medal: medalBronze.filter(item => item.username === USERS[i].email).length})}
+        for(let i = 0; i < USERS.length  ; i++) {
+            countPlatinum.push({username: USERS[i].email, medal: medalPlatinum.filter(item => item.username === USERS[i].email).length})}
 
         console.log(countGold)
         console.log(countSilver)
         console.log(countBronze)
-
-
-        // for(let i = 0; i < USERS.length  ; i++){
-        //
-        // }
-
-        // for(let k = 0; k < sortedMedalThree.length ; k++) {
-        //     console.log(sortedMedalThree[k])
-        //     console.log("================================================")
-        // }
-
-        //console.log(sortedMedalThree[1])
-
-        // for(let k = 0; k < medal.length ; k++) {
-        //     //medal[k].push(new fMedal (sorted[k].username, 1, 3, 5,1))
-        //     console.log(sorted[k])
-        // }
-
-        // function fMedal(email, gold, silver, bronze, platinum) {
-        //     this.email = email;
-        //     this.gold = gold;
-        //     this.silver = silver;
-        //     this.bronze = bronze;
-        //     this.platinum = platinum;
-        // }
-        // for(let k = 0; k < medal.length ; k++) {
-        //     console.log(medal[k])
-        // }
-
-        // let pi = new fMedal("pi", 1, 3, 4,7);
-        // let nikita = new fMedal("nikita", 1, 5, 7,11);
-        // fMedal[0] = pi
-        // fMedal[1] = nikita
-        //console.log(fMedal[1].email)
-
-        // console.log("================================================")
-        // for(let i = 0; i < arrayNFSMWsortTRACK.length  ; i++) {
-        //     console.log(arrayNFSMWsortTRACK[i] )
-        // }
-
-
-        // for(let i =0; i < result2.length ; i++){
-        //     console.log(result2[i].timestate + ' ' + result2[i].username)
-        // }
+        console.log(countPlatinum)
 
     } catch (e) {
         console.log(e)
