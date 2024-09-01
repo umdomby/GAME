@@ -7,7 +7,7 @@ const fileUpload = require('express-fileupload')
 const router = require('./routes/index')
 const errorHandler = require('./middleware/ErrorHandlingMiddleware')
 const path = require('path')
-const {Device, Brand} = require("./models/models");
+const {Device, Brand, User} = require("./models/models");
 
 const PORT = 5001
 
@@ -56,9 +56,20 @@ const updata = async () => {
             // attributes: ['timestate']
         })
 
+        const USERS = await User.findAll({
+            attributes: ['email']
+        })
+
+
         let arrayNFSMWnoSortTRACK = []
-        let arrayNFSMWSortTRACK = []
-        let arrayNFSMWSortUSER = []
+        let sortedMedalThreeUser = []
+        let sortedMedalThree = []
+        let sortedThreeArrayNFSMWnoSortTRACK = []
+        let medalGold = []
+        let medalSilver = []
+        let medalBronze = []
+        let medalPlatinum = []
+
         console.log("##################################")
         for(let i = 0; i < TRACKresult.length  ; i++){
             arrayNFSMWnoSortTRACK = []
@@ -77,12 +88,63 @@ const updata = async () => {
 
                 }
             }
-            console.log("================================================")
-            for(let i = 0; i < arrayNFSMWnoSortTRACK.length  ; i++) {
+            // for(let i = 0; i < arrayNFSMWnoSortTRACK.length  ; i++) {
+            //     console.log(arrayNFSMWnoSortTRACK[i])
+            // }
 
-                console.log(arrayNFSMWnoSortTRACK[i])
-            }
+            sortedThreeArrayNFSMWnoSortTRACK = arrayNFSMWnoSortTRACK.sort((a, b) => Number(a.timestate.replace(/[\:.]/g, '')) - Number(b.timestate.replace(/[\:.]/g, '')));
+            sortedThreeArrayNFSMWnoSortTRACK.splice(3)
+
+            // for(let k = 0; k < sorted.length ; k++) {
+            //    console.log(sorted[k])
+            // }
+            if(sortedThreeArrayNFSMWnoSortTRACK[0] !== undefined)   medalGold.push(sortedThreeArrayNFSMWnoSortTRACK[0])
+            if(sortedThreeArrayNFSMWnoSortTRACK[1] !== undefined)   medalSilver.push(sortedThreeArrayNFSMWnoSortTRACK[1])
+            if(sortedThreeArrayNFSMWnoSortTRACK[2] !== undefined)   medalBronze.push(sortedThreeArrayNFSMWnoSortTRACK[2])
+
+
+
+            //console.log(sortedThreeArrayNFSMWnoSortTRACK[0])
+            
+            //medal.push({email: sorted.username, gold: 1, silver: 3, bronze: 5, platinum: 1})
         }
+        console.log(medalGold)
+
+
+        // for(let k = 0; k < sortedMedalThree.length ; k++) {
+        //     console.log(sortedMedalThree[k])
+        //     console.log("================================================")
+        // }
+        //console.log(sortedMedalThree[1])
+
+        // for(let i = 0; i < USERS.length  ; i++) {
+        //     console.log(USERS[i].email)
+        // }
+
+        // for(let k = 0; k < medal.length ; k++) {
+        //     //medal[k].push(new fMedal (sorted[k].username, 1, 3, 5,1))
+        //     console.log(sorted[k])
+        // }
+
+
+        // function fMedal(email, gold, silver, bronze, platinum) {
+        //     this.email = email;
+        //     this.gold = gold;
+        //     this.silver = silver;
+        //     this.bronze = bronze;
+        //     this.platinum = platinum;
+        // }
+        // for(let k = 0; k < medal.length ; k++) {
+        //     console.log(medal[k])
+        // }
+
+        // let pi = new fMedal("pi", 1, 3, 4,7);
+        // let nikita = new fMedal("nikita", 1, 5, 7,11);
+        // fMedal[0] = pi
+        // fMedal[1] = nikita
+        //console.log(fMedal[1].email)
+
+
 
         // console.log("================================================")
         // for(let i = 0; i < arrayNFSMWsortTRACK.length  ; i++) {
@@ -94,26 +156,6 @@ const updata = async () => {
         //     console.log(result2[i].timestate + ' ' + result2[i].username)
         // }
 
-
-
-
-        // await Brand.update(
-        //     { name: 'NFS Most Wanted 2005' },
-        //     {
-        //         where: {
-        //             name: 'NFS Most Wanted',
-        //         },
-        //     },
-        // );
-
-        // await Device.update(
-        //     { name: 'NFS Most Wanted 2005' },
-        //     {
-        //         where: {
-        //             name: 'NFS Most Wanted',
-        //         },
-        //     },
-        // );
     } catch (e) {
         console.log(e)
     }
