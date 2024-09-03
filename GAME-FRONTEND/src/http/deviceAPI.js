@@ -51,6 +51,15 @@ export const createDevice = async (device) => {
     }
 }
 
+export const createMedal = async (device) => {
+    try {
+        const {data} = await $authHost.post('api/medal/', device)
+        return data
+    }catch (e) {
+        console.log(e)
+    }
+}
+
 export const updateDeviceTimestate = async (device) => {
     const {data} = await $authHost.post('api/device/update/timestate', device)
     return data

@@ -3,6 +3,7 @@ import Modal from "react-bootstrap/Modal";
 import {Button, Col, Row} from "react-bootstrap";
 import {Context} from "../../index";
 import {
+    createMedal,
     deviceDelete,
     fetchMyDevices,
     updateDeviceFile,
@@ -41,22 +42,24 @@ const EditMyDevice = observer(({show, onHide}) => {
         updateLinkVideo(formData).then(data => setRend(true))
     }
 
-    const FormDataTimestate = (id, description, timestate) => {
+    const FormDataTimestate = (id, description, timestate, typename) => {
         const formData = new FormData()
         formData.append('id', id)
         formData.append('timestate', timestate)
         formData.append('description', description)
-        updateDeviceTimestate(formData).then( data => {
+        formData.append('typename', typename)
+        updateDeviceTimestate(formData).then(data=> createMedal({typename: data.typename})).then( data => {
             setRend(true)
             alert(data.description + ' изменен на: ' + data.timestate)})
     }
-    const FormDataDelete = (id, description, timestate, img) => {
+    const FormDataDelete = (id, description, timestate, img, typename ) => {
         const conf = window.confirm("Подтверждаете удаление " + description +" "+ timestate +" ?");
         if (conf) {
             const formData = new FormData()
             formData.append('id', id)
             formData.append('imgdel', img)
-            deviceDelete(formData).then(data => setRend(true))
+            formData.append('typename', typename)
+            deviceDelete(formData).then(data=> createMedal({typename: data.typename})).then(data => setRend(true))
         }
     }
 
@@ -98,8 +101,8 @@ const EditMyDevice = observer(({show, onHide}) => {
                                              timestateRef.current = e.target.value
                                         }}
                                     />
-                                <input disabled={idRend.id === deviceMap.id  ? false : true} type="submit" value="Add" onClick={() => FormDataTimestate(deviceMap.id, deviceMap.description, timestateRef.current)}/>
-                                <Button style={{marginLeft: '5px'}} onClick={() => FormDataDelete(deviceMap.id, deviceMap.description, deviceMap.timestate, deviceMap.img)}>Del</Button>
+                                <input disabled={idRend.id === deviceMap.id  ? false : true} type="submit" value="Add" onClick={() => FormDataTimestate(deviceMap.id, deviceMap.description, timestateRef.current, deviceMap.name)}/>
+                                <Button style={{marginLeft: '5px'}} onClick={() => FormDataDelete(deviceMap.id, deviceMap.description, deviceMap.timestate, deviceMap.img, deviceMap.name)}>Del</Button>
                             </Col>
                         </Row>
                     </ListGroup.Item>

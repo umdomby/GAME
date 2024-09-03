@@ -5,36 +5,15 @@ import ListGroup from "react-bootstrap/ListGroup";
 import {fetchBrands, fetchDevices, fetchTypes, fetchTypesBrands} from "../http/deviceAPI";
 import {getDataUsers} from "../http/userAPI";
 import {Col, Row} from "react-bootstrap";
+import MedalGames from "./MedalGames";
 
 const TypeBar = observer(() => {
-    const {device, user} = useContext(Context)
-    const [dataUsers, setDataUsers] = useState([])
-    const [dataUsers2, setDataUsers2] = useState([])
+    const {device} = useContext(Context)
 
     useEffect(() => {
-        //getDataUsers().then(data => setDataUsers(data))
-
-
-        getDataUsers().then(data => {
-
-            let arr = []
-            for(let i = 0; i < data.length; i++){
-                arr.push(JSON.parse(data[i].medal))
-                //console.log(arr[i])
-            }
-
-            // for(let i = 0; i < arr.length; i++){
-            //     console.log(arr[i].gold)
-            // }
-            setDataUsers2(arr.sort((a, b) => b.gold - a.gold));
-            //setDataUsers2(arr)
-            // for(let i = 0; i < dataUsers2.length; i++){
-            //     console.log(dataUsers2[i].gold)
-            // }
-        })
-
         fetchTypes().then(data => device.setTypes(data))
         fetchBrands().then(data => device.setBrands(data))
+        // console.log(device.selectedType)
     }, [])
 
     const typesBrands = () => {
@@ -72,35 +51,17 @@ const TypeBar = observer(() => {
         </ListGroup>
         <div style={{marginTop:'20px'}}></div>
 
-            {dataUsers.map(users  =>
-                <div>
-                    {users.email}
-                    {users.point}
-                    {/*{JSON.parse(JSON.stringify(users.medal.gold))}*/}
-                </div>
-            )}
+            {/*{dataUsers.map(users  =>*/}
+            {/*    <div>*/}
+            {/*        {users.email}*/}
+            {/*        {users.point}*/}
+            {/*        /!*{JSON.parse(JSON.stringify(users.medal.gold))}*!/*/}
+            {/*    </div>*/}
+            {/*)}*/}
 
-        <div style={{marginTop:'20px'}}></div>
-            <Row>
-                <Col style={{}}>NFSMW</Col>
-                <Col style={{}}>Gold</Col>
-                <Col style={{}}>Silver</Col>
-                <Col style={{}}>Bronze</Col>
-                <Col style={{}}>Pl</Col>
-            </Row>
-            {dataUsers2.map((users, index) =>
-                <div key={index}>
-                    <Row>
-                        <Col style={{}}>{users.username}</Col>
-                        <Col style={{}}>{users.gold}</Col>
-                        <Col style={{}}>{users.silver}</Col>
-                        <Col style={{}}>{users.bronze}</Col>
-                        <Col style={{}}>{users.platinum}</Col>
-                    </Row>
-                </div>
-            )}
-
+            <MedalGames/>
         </div>
+
 
 
     );

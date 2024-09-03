@@ -8,7 +8,12 @@ const User = sequelize.define('user', {
     point: {type: DataTypes.INTEGER, allowNull: false},
     password: {type: DataTypes.STRING},
     role: {type: DataTypes.STRING, defaultValue: "USER"},
-    medal: {type: DataTypes.STRING, unique: false, defaultValue: ''},
+    nfsmostwanted2005: {type: DataTypes.STRING, unique: false, defaultValue: ''},
+    nfsmostwanted20055laps: {type: DataTypes.STRING, unique: false, defaultValue: ''},
+    nfsshift: {type: DataTypes.STRING, unique: false, defaultValue: ''},
+    nfsunderground: {type: DataTypes.STRING, unique: false, defaultValue: ''},
+    nfscarbon: {type: DataTypes.STRING, unique: false, defaultValue: ''},
+
 })
 
 // const Basket = sequelize.define('basket', {

@@ -2,7 +2,7 @@ import React, {useContext, useEffect, useState} from 'react';
 import Modal from "react-bootstrap/Modal";
 import {Button, Dropdown, Form, Row, Col} from "react-bootstrap";
 import {Context} from "../../index";
-import {createDevice, fetchBrands, fetchTypes, fetchTypesBrands} from "../../http/deviceAPI";
+import {createDevice, createMedal, fetchBrands, fetchTypes, fetchTypesBrands} from "../../http/deviceAPI";
 import {observer} from "mobx-react-lite";
 
 const CreateDevice = observer(({show, onHide}) => {
@@ -34,7 +34,7 @@ const CreateDevice = observer(({show, onHide}) => {
         formData.append('timestate', timeState)
         formData.append('linkvideo', linkVideo)
         formData.append('img', file)
-        createDevice(formData).then(data => onHide())
+        createDevice(formData).then(data=> createMedal({typename: data.name})).then(data => onHide())
         setFile(null)
     }
 

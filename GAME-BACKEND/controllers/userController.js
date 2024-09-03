@@ -108,8 +108,10 @@ class UserController {
 
 
         const userAll = await User.findAll({
-            attributes: ['email', 'point', 'medal']
+            attributes: {exclude: ['id', 'ip', 'email', 'point', 'password', 'role','createdAt', 'updatedAt']}
             })
+
+        //console.log('11111111 ' + userAll[0].email)
         return res.json(userAll)
     }
 }
