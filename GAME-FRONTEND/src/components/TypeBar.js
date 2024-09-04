@@ -51,14 +51,6 @@ const TypeBar = observer(() => {
         </ListGroup>
         <div style={{marginTop:'20px'}}></div>
 
-            {/*{dataUsers.map(users  =>*/}
-            {/*    <div>*/}
-            {/*        {users.email}*/}
-            {/*        {users.point}*/}
-            {/*        /!*{JSON.parse(JSON.stringify(users.medal.gold))}*!/*/}
-            {/*    </div>*/}
-            {/*)}*/}
-
             <MedalGames/>
         </div>
 
