@@ -18,7 +18,7 @@ const Auth = observer(() => {
     const isLogin = location.pathname === LOGIN_ROUTE
     const [email, setEmail] = useState(localStorage.getItem('pass') || '')
     const [password, setPassword] = useState('')
-    const [reCAPTCHA, setReCAPTCHA] = useState(true)
+    // const [reCAPTCHA, setReCAPTCHA] = useState(true)
 
     const ipRef = useRef('')
 
@@ -43,9 +43,9 @@ const Auth = observer(() => {
         }
     }
 
-    const onChange = (value) => {
-        setReCAPTCHA(false)
-    }
+    // const onChange = (value) => {
+    //     setReCAPTCHA(false)
+    // }
 
     return (
         <Container
@@ -78,12 +78,12 @@ const Auth = observer(() => {
                                 Account? <NavLink to={LOGIN_ROUTE}>ENTER!</NavLink>
                             </div>
                         }
-                        <ReCAPTCHA
-                            sitekey="6Ld-qr0bAAAAAEXsi5tKq5g6Ddwg0oG6Aqmo9mmA"
-                            onChange={onChange}
-                        />
+                        {/*<ReCAPTCHA*/}
+                        {/*    sitekey="6Ld-qr0bAAAAAEXsi5tKq5g6Ddwg0oG6Aqmo9mmA"*/}
+                        {/*    onChange={onChange}*/}
+                        {/*/>*/}
                         <Button
-                            disabled={reCAPTCHA}
+                            // disabled={reCAPTCHA}
                             variant={"outline-success"}
                             onClick={()=> {localStorage.setItem('pass', email); click()}}
                         >
