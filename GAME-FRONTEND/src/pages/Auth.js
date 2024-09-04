@@ -22,10 +22,10 @@ const Auth = observer(() => {
 
     const ipRef = useRef('')
 
-    useEffect(async () => {
-        const res = await axios.get("https://api.ipify.org/?format=json");
-        ipRef.current = res.data.ip
-    }, [])
+    // useEffect(async () => {
+    //     const res = await axios.get("https://api.ipify.org/?format=json");
+    //     ipRef.current = res.data.ip
+    // }, [])
 
     const click = async () => {
         try {
