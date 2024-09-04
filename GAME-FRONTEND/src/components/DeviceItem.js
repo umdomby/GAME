@@ -23,28 +23,23 @@ const DeviceItem = ({devicer}) => {
     return (
             <Card style={{width: '100%'}} border={"light"}>
                 <Row style={{width:'100%'}}>
-                    <Col md={2} className={"mt-3"}>
-                        <div className='jook-container'>
-                            <Modal
-                                ariaHideApp={false}
-                                isOpen={showModal}
-                                onRequestClose={()=>setShowModal(false)}
-                            >
-                                <div>
-                                    <Image style={{ margin: '0 auto', display: 'block', width:"55%", cursor: 'pointer' }} src={process.env.REACT_APP_API_URL + 'image/full/' + devicer.img}  onClick={() => setShowModal(false)}/>
-                                </div>
-                                <div>
-                                    <Col style={{}}>Create {moment(devicer.createdAt).format('YYYY-MM-DD HH:mm:ss')}</Col>
-                                </div>
-                                <div>
-                                    <Col>
-                                        Link Video <a style={{cursor: 'pointer'}} href={devicer.linkvideo} target="_blank">{devicer.linkvideo}</a>
-                                    </Col>
-                                </div>
-                            </Modal>
-                        </div>
-                    </Col>
-
+                        <Modal
+                            ariaHideApp={false}
+                            isOpen={showModal}
+                            onRequestClose={()=>setShowModal(false)}
+                        >
+                            <div>
+                                <Image style={{ margin: '0 auto', display: 'block', width:"55%", cursor: 'pointer' }} src={process.env.REACT_APP_API_URL + 'image/full/' + devicer.img}  onClick={() => setShowModal(false)}/>
+                            </div>
+                            <div>
+                                <Col style={{}}>Create {moment(devicer.createdAt).format('YYYY-MM-DD HH:mm:ss')}</Col>
+                            </div>
+                            <div>
+                                <Col>
+                                    Link Video <a style={{cursor: 'pointer'}} href={devicer.linkvideo} target="_blank">{devicer.linkvideo}</a>
+                                </Col>
+                            </div>
+                        </Modal>
                     <Col style={{}}>{devicer.name}</Col>
                     <Col style={{}}>{devicer.description}</Col>
                     <Col style={{}}>
