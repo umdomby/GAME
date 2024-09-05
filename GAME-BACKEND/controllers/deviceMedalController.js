@@ -2,9 +2,6 @@ const {Device, Brand, User, Type} = require('../models/models')
 
 async function allMedalCount() {
     try {
-
-        console.log("333333333333333")
-        console.log("#########################################")
         const USERS = await User.findAll({
             attributes: {exclude: ['id', 'ip', 'email', 'point', 'allmedal', 'password', 'role', 'createdAt', 'updatedAt']}
         })
