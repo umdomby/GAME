@@ -15,7 +15,7 @@ const DeviceList = observer(() => {
                 <Col>TIME</Col>
                 <Col>IMAGE-VIDEO</Col>
             </Row>
-            <Row>
+            <Row className="d-flex">
                 {device.devices.map(devicer =>
                     <DeviceItem key={devicer.id} devicer={devicer}/>
                 )}

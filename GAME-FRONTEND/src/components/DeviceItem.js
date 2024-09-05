@@ -12,6 +12,15 @@ const DeviceItem = ({devicer}) => {
     const [deviceVisible, setDeviceVisible] = useState(false)
     const [devicesUsername, setDevicesUsername] = useState([])
 
+    const customStyles = {
+        content : {
+            // style={{ marginLeft: 'auto', marginRight: 'auto' }}
+        },
+        overlay: {
+            zIndex: 999999999,
+            backgroundColor: 'transparent'
+        }
+    };
     const devicesUsernameFunc = (username) => {
         fetchDevicesUsername(username).then(data => {
             setDevicesUsername(data)
@@ -24,6 +33,7 @@ const DeviceItem = ({devicer}) => {
             <Card style={{width: '100%'}} border={"light"}>
                 <Row style={{width:'100%'}}>
                         <Modal
+                            style={customStyles}
                             ariaHideApp={false}
                             isOpen={showModal}
                             onRequestClose={()=>setShowModal(false)}
