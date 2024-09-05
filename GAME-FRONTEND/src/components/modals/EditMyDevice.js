@@ -48,9 +48,10 @@ const EditMyDevice = observer(({show, onHide}) => {
         formData.append('timestate', timestate)
         formData.append('description', description)
         formData.append('typename', typename)
-        updateDeviceTimestate(formData).then(data=> createMedal({typename: data.typename})).then( data => {
-            setRend(true)
-            alert(data.description + ' изменен на: ' + data.timestate)})
+        updateDeviceTimestate(formData).then(data=> {
+            createMedal({typename: data.typename}).then(r => setRend(true))
+            alert(data.description + ' изменен на: ' + data.timestate)
+        })
     }
     const FormDataDelete = (id, description, timestate, img, typename ) => {
         const conf = window.confirm("Подтверждаете удаление " + description +" "+ timestate +" ?");
