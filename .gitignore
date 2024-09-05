@@ -1,5 +1,6 @@
 /SHOP-FRONTEND/node_modules/
 /SHOP-FRONTEND/.env/
+/SHOP-FRONTEND/build/
 /.idea/
 /SHOP-BACKEND/node_modules/
 /SHOP-BACKEND/.env/
