@@ -13,6 +13,7 @@ const User = sequelize.define('user', {
     nfsshift: {type: DataTypes.STRING, unique: false, defaultValue: ''},
     nfsunderground: {type: DataTypes.STRING, unique: false, defaultValue: ''},
     nfscarbon: {type: DataTypes.STRING, unique: false, defaultValue: ''},
+    allmedal: {type: DataTypes.STRING, unique: false, defaultValue: ''},
 
 })
 

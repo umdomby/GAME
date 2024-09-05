@@ -11,11 +11,10 @@ const MedalGames = observer(() => {
     const [dataUsers, setDataUsers] = useState([])
 
     useEffect(() => {
-
         if(device.selectedType.name !== undefined) {
-
             getDataUsers().then(data => {
                 let arr = []
+
                 if(device.selectedType.name.replace(/\s+/g, '').toLowerCase() === 'nfsmostwanted2005'){
                     for (let i = 0; i < data.length; i++) {
                         arr.push(JSON.parse(data[i].nfsmostwanted2005))
@@ -43,13 +42,22 @@ const MedalGames = observer(() => {
                 }
                 setDataUsers(arr.sort((a, b) => b.gold - a.gold));
             })
+        }else {
+            getDataUsers().then(data => {
+                let arr = []
+                for (let i = 0; i < data.length; i++) {
+                    arr.push(JSON.parse(data[i].allmedal))
+                    //console.log(JSON.parse(data[i].allmedal))
+                }
+                setDataUsers(arr.sort((a, b) => b.gold - a.gold));
+            })
         }
 
     }, [device.selectedType.name])
 
     return (
         <div>
-            {device.selectedType.name === undefined ? '' :
+
                 <div>
                     <div style={{marginTop: '20px'}}></div>
                     <Row>
@@ -71,7 +79,7 @@ const MedalGames = observer(() => {
                         </div>
                     )}
                 </div>
-            }
+
         </div>
     )
 

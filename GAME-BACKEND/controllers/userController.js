@@ -1,7 +1,7 @@
 const ApiError = require('../error/ApiError');
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
-const {User, Basket, Type} = require('../models/models')
+const {User, Basket, Type, Brand} = require('../models/models')
 const db = require('../dbPool')
 
 const generateJwt = (id, email, role) => {
@@ -38,6 +38,23 @@ class UserController {
             .catch((error) => {
                 throw new Error(error)
             })
+        //######################## ADD DATA MEDAL ####################################
+        let medalUsersFull = []
+            medalUsersFull.push({
+                username: email,
+                gold: 0,
+                silver: 0,
+                bronze: 0,
+                platinum: 0
+            })
+        const userAllTypeField = await User.findOne({ attributes: {exclude: ['id', 'ip', 'email', 'point', 'password', 'role','createdAt', 'updatedAt']}})
+        for (let k = 0; k < Object.keys(userAllTypeField.dataValues).length; k++) {
+                await User.findOne({where: {email: email}}).then(record => {
+                    record.update({[Object.keys(userAllTypeField.dataValues)[k]]: JSON.stringify(medalUsersFull[0])}).then(updatedRecord => {
+                        console.log(`updated record ${JSON.stringify(updatedRecord, null, 2)}`)
+                    })})
+        }
+        //################ END DATA MEDAL #######################
         const token = generateJwt(user.id, user.email, user.role)
         return res.json({token})
     }
@@ -109,9 +126,9 @@ class UserController {
 
         const userAll = await User.findAll({
             attributes: {exclude: ['id', 'ip', 'email', 'point', 'password', 'role','createdAt', 'updatedAt']}
-            })
+        })
 
-        //console.log('11111111 ' + userAll[0].email)
+        //console.log('11111111 ' + userAll)
         return res.json(userAll)
     }
 }

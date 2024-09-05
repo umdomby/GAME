@@ -25,79 +25,53 @@ const updata = async () => {
         await sequelize.authenticate()
         await sequelize.sync()
 
-        const TRACKresult = await Brand.findAll({where: {name: 'NFS Most Wanted 2005'}, attributes: ['description']})
-        const NFSMWresult = await Device.findAll({where: {name: 'NFS Most Wanted 2005'}})
-        const USERS = await User.findAll({attributes: ['email']})
+        const USERS = await User.findAll({
+            attributes: {exclude: ['id', 'ip', 'email', 'point', 'allmedal', 'password', 'role','createdAt', 'updatedAt']}})
 
-        let arrayNFSMWnoSortTRACK = []
-        let sortedThreeArrayNFSMWnoSortTRACK = []
-        let medalGold = []
-        let medalSilver = []
-        let medalBronze = []
-        let medalPlatinum = []
+        //Users count
+        console.log(USERS.length)
+        //Track count
+        // for(let i = 0; i < Object.keys(Object.keys(USERS[0].dataValues)).length; i++) {
+        //     console.log(Object.keys(USERS[0].dataValues)[i])
+        // }
+        // console.log('gold ')
+        // console.log(JSON.parse(Object.values(USERS[0].dataValues)[0]).gold)
+        // console.log('gold ')
 
-        for(let i = 0; i < TRACKresult.length  ; i++){
-            arrayNFSMWnoSortTRACK = []
-            for(let b = 0; b < NFSMWresult.length ; b++) {
-                if(TRACKresult[i].description === NFSMWresult[b].description) {
-                    arrayNFSMWnoSortTRACK.push({username: NFSMWresult[b].username, timestate: NFSMWresult[b].timestate, description: NFSMWresult[b].description})
-                }
+
+        // count Track
+        for(let k = 0; k < USERS.length  ; k++) {
+
+            let gold = 0
+            let silver = 0
+            let bronze =0
+            let platinum = 0
+
+            for(let i = 0; i < Object.keys(Object.keys(USERS[0].dataValues)).length; i++) {
+                // set User
+                gold = gold + JSON.parse(Object.values(USERS[k].dataValues)[i]).gold
+                silver = silver + JSON.parse(Object.values(USERS[k].dataValues)[i]).silver
+                bronze = bronze + JSON.parse(Object.values(USERS[k].dataValues)[i]).bronze
+                platinum = platinum + JSON.parse(Object.values(USERS[k].dataValues)[i]).platinum
+                //console.log(JSON.parse(Object.values(USERS[0].dataValues)[k]).gold)
             }
-            sortedThreeArrayNFSMWnoSortTRACK = arrayNFSMWnoSortTRACK.sort((a, b) => Number(a.timestate.replace(/[\:.]/g, '')) - Number(b.timestate.replace(/[\:.]/g, '')));
-            sortedThreeArrayNFSMWnoSortTRACK.splice(3)
 
-            for(let i = 0; i < USERS.length  ; i++){
-                //console.log(USERS[i].email)
-                let equals = 0
-                for(let k = 0; k < sortedThreeArrayNFSMWnoSortTRACK.length  ; k++){
-                    if (sortedThreeArrayNFSMWnoSortTRACK[k].username === USERS[i].email) {
-                        equals = equals + 1
-                        //console.log(equals + ' ' + sortedThreeArrayNFSMWnoSortTRACK[k].description)
-                        if(equals === 3) {
-                            //console.log("Platinum " + USERS[i].email)
-                            medalPlatinum.push({username: USERS[i].email})
-                        }
-                    }
-                }
-            }
-            if(sortedThreeArrayNFSMWnoSortTRACK[0] !== undefined)   medalGold.push(sortedThreeArrayNFSMWnoSortTRACK[0])
-            if(sortedThreeArrayNFSMWnoSortTRACK[1] !== undefined)   medalSilver.push(sortedThreeArrayNFSMWnoSortTRACK[1])
-            if(sortedThreeArrayNFSMWnoSortTRACK[2] !== undefined)   medalBronze.push(sortedThreeArrayNFSMWnoSortTRACK[2])
-        }
+            //username
+            console.log(JSON.parse(Object.values(USERS[k].dataValues)[0]).username)
+            let username = JSON.parse(Object.values(USERS[k].dataValues)[0]).username
+            console.log('gold ' + gold)
+            console.log('silver ' + silver)
+            console.log('bronze ' + bronze)
+            console.log('platinum ' + platinum)
 
-        let countGold = []
-        let countSilver = []
-        let countBronze = []
-        let countPlatinum = []
+            let dataMedal = {username, gold, silver, bronze, platinum}
+            console.log(dataMedal)
 
-        for(let i = 0; i < USERS.length  ; i++) {
-            countGold.push({username: USERS[i].email, medal: medalGold.filter(item => item.username === USERS[i].email).length})}
-        for(let i = 0; i < USERS.length  ; i++) {
-            countSilver.push({username: USERS[i].email, medal: medalSilver.filter(item => item.username === USERS[i].email).length})}
-        for(let i = 0; i < USERS.length  ; i++) {
-            countBronze.push({username: USERS[i].email, medal: medalBronze.filter(item => item.username === USERS[i].email).length})}
-        for(let i = 0; i < USERS.length  ; i++) {
-            countPlatinum.push({username: USERS[i].email, medal: medalPlatinum.filter(item => item.username === USERS[i].email).length})}
-
-        let medalUsersFull = []
-
-        for(let i = 0; i < USERS.length  ; i++){
-            medalUsersFull.push( {username: USERS[i].email, gold: countGold[i].medal, silver: countSilver[i].medal, bronze: countBronze[i].medal, platinum: countPlatinum[i].medal })
-        }
-
-        for(let i = 0; i < medalUsersFull.length  ; i++){
-            await User.findOne({where: {email: medalUsersFull[i].username }}).then(record => {
-                record.update({medal: JSON.stringify(medalUsersFull[i])}).then(updatedRecord => {
-                    console.log(`updated record ${JSON.stringify(updatedRecord,null,2)}`)
+            await User.findOne({where: {email: username}}).then(record => {
+                record.update({allmedal: JSON.stringify(dataMedal)}).then(updatedRecord => {
+                    console.log(`updated record ${JSON.stringify(updatedRecord, null, 2)}`)
                 })})
         }
-
-        // console.log(countGold)
-        // console.log(countSilver)
-        // console.log(countBronze)
-        // console.log(countPlatinum)
-
-        console.log(medalUsersFull)
 
     } catch (e) {
         console.log(e)
