@@ -1,7 +1,10 @@
-/SHOP-FRONTEND/node_modules/
-/SHOP-FRONTEND/.env/
-/SHOP-FRONTEND/build/
+/GAME-FRONTEND/node_modules/
+/GAME-FRONTEND/build/
+/GAME-BACKEND/node_modules/
+/GAME-BACKEND/.env
 /.idea/
-/SHOP-BACKEND/node_modules/
-/SHOP-BACKEND/.env/
 .idea
+/GAME-FRONTEND/yarn.lock
+/GAME-FRONTEND/package-lock.json
+/GAME-BACKEND/package-lock.json
+/GAME-BACKEND/yarn.lock

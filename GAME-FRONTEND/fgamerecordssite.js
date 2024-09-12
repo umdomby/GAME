@@ -25,6 +25,6 @@ app.get('*', (req, res)=>{
     res.sendFile(path.join(__dirname, 'build', 'index.html'))
 })
 
-httpServer.listen(8081, () => {
-    console.log('HTTP Server running on port 8081');
+httpServer.listen(8080, () => {
+    console.log('HTTP Server running on port 8080');
 });
