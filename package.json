@@ -1,5 +1,5 @@
 {
   "scripts": {
-    "start": "cd GAME-BACKEND && yarn pm2 & cd GAME-FRONTEND && yarn pm2"
+    "pm2": "cd GAME-BACKEND && yarn pm2 & cd GAME-FRONTEND && yarn pm2"
   }
 }
