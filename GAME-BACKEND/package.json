@@ -6,7 +6,7 @@
   "scripts": {
     "pm2": "pm2 start bgamerecordssite.js",
     "prod": "nodemon bgamerecordssite.js",
-    "dev": "nodemon bgamerecordssite.js",
+    "dev": "nodemon dev.js",
     "start": "nodemon bgamerecordssite.js",
     "updata": "node updata.js"
   },
