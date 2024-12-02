@@ -1,5 +1,6 @@
 const {Device, Brand, User, Type} = require('../models/models')
 
+// frontend func --> createMedal --> GAME\GAME-FRONTEND\src\components\modals\EditMyDevice.js
 class DeviceMedalController {
     async medal(req, res, next) {
         try {

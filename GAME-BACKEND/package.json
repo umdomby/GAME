@@ -8,7 +8,7 @@
     "prod": "nodemon bgamerecordssite.js",
     "dev": "nodemon dev.js",
     "start": "nodemon bgamerecordssite.js",
-    "updata": "node updata.js"
+    "updata": "node updata-test.js"
   },
   "keywords": [],
   "author": "",

@@ -20,7 +20,7 @@ app.use('/api', router)
 // Обработка ошибок, последний Middleware
 app.use(errorHandler)
 
-const updata = async () => {
+const updataTest = async () => {
     try {
         await sequelize.authenticate()
         await sequelize.sync()
@@ -28,16 +28,8 @@ const updata = async () => {
         const USERS = await User.findAll({
             attributes: {exclude: ['id', 'ip', 'email', 'point', 'allmedal', 'password', 'role','createdAt', 'updatedAt']}})
 
-        //Users count
+        // Users count
         console.log(USERS.length)
-        //Track count
-        // for(let i = 0; i < Object.keys(Object.keys(USERS[0].dataValues)).length; i++) {
-        //     console.log(Object.keys(USERS[0].dataValues)[i])
-        // }
-        // console.log('gold ')
-        // console.log(JSON.parse(Object.values(USERS[0].dataValues)[0]).gold)
-        // console.log('gold ')
-
 
         // count Track
         for(let k = 0; k < USERS.length  ; k++) {
@@ -79,4 +71,4 @@ const updata = async () => {
 }
 
 
-updata()
+updataTest()
