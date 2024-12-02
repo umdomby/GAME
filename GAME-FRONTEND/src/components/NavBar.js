@@ -30,7 +30,7 @@ const NavBar = observer(() => {
                     device.setDevices(data.rows)
                     device.setTotalCount(data.count)
                 })}} style={{color:'white'}} to={SHOP_ROUTE}>GAME RECORDS</NavLink>
-                <a className="ml-auto" style={{cursor: 'pointer'}} href={'https://drive.google.com/file/d/1UMsLzhOD_ISOmEm370SO7SbLFtSdNs0n/view?usp=sharing'} target="_blank">NFS Most Wanted</a>
+                <div className="ml-auto">NFS Most Wanted 2005</div>
                 {user.isAuth ?
                     <Nav className="ml-auto" style={{color: 'white'}}>
                         <div style={{padding: '10px'}}>{user.user.email}</div>
